@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bias Analyzer - LifeOS</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .analyzer-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .input-area {
+            margin-bottom: 2rem;
+        }
+
+        #reasoning-input {
+            width: 100%;
+            min-height: 200px;
+            padding: 1.5rem;
+            font-size: 1rem;
+            line-height: 1.6;
+            resize: vertical;
+            border-radius: 16px;
+            margin-bottom: 1rem;
+        }
+
+        .results-area {
+            display: none;
+        }
+
+        .results-area.active {
+            display: block;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .bias-card {
+            padding: 1.25rem;
+            margin-bottom: 1rem;
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+
+        .bias-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .bias-info h4 {
+            margin-bottom: 0.25rem;
+            font-weight: 600;
+        }
+
+        .bias-info p {
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        .bias-severity {
+            margin-left: auto;
+            font-size: 0.75rem;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .severity-high {
+            background: rgba(239, 68, 68, 0.1);
+            color: var(--danger);
+        }
+
+        .severity-med {
+            background: rgba(245, 158, 11, 0.1);
+            color: var(--warning);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar glass-panel">
+            <div class="logo">
+                <i class="ri-pulse-fill"></i>
+                <span>LifeOS</span>
+            </div>
+            <nav class="nav-links">
+                <li class="nav-item"><a href="index.html" class="nav-link"><i class="ri-dashboard-3-line"></i><span
+                            class="nav-text">Dashboard</span></a></li>
+                <li class="nav-item"><a href="decision.html" class="nav-link"><i class="ri-git-branch-line"></i><span
+                            class="nav-text">Decision Builder</span></a></li>
+                <li class="nav-item"><a href="simulator.html" class="nav-link"><i class="ri-magic-line"></i><span
+                            class="nav-text">Simulator</span></a></li>
+                <li class="nav-item"><a href="analyzer.html" class="nav-link active"><i class="ri-cpu-line"></i><span
+                            class="nav-text">Bias Analyzer</span></a></li>
+                <li class="nav-item"><a href="timeline.html" class="nav-link"><i class="ri-history-line"></i><span
+                            class="nav-text">Insight Timeline</span></a></li>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header class="page-header animate-in">
+                <div class="header-info">
+                    <h1>Bias & Clarity Analyzer</h1>
+                    <p>Detect cognitive blind spots in your reasoning.</p>
+                </div>
+            </header>
+
+            <div class="analyzer-container animate-in" style="animation-delay: 0.1s">
+                <section class="input-area glass-panel" style="padding: 2rem;">
+                    <label style="display: block; margin-bottom: 1rem; font-weight: 500;">Describe your reasoning for a
+                        decision:</label>
+                    <textarea id="reasoning-input" class="input-glass"
+                        placeholder="I want to quit my job because I'm bored, but I'm afraid I won't find something better. Everyone says I should stay..."></textarea>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span style="font-size: 0.8rem; opacity: 0.5;">AI will analyze for Confirmation Bias, Sunk Cost,
+                            etc.</span>
+                        <button id="analyze-btn" class="btn btn-primary">
+                            <i class="ri-search-eye-line"></i> Analyze Reasoning
+                        </button>
+                    </div>
+                </section>
+
+                <section id="results-area" class="results-area">
+                    <h3 style="margin-bottom: 1.5rem;">Analysis Results</h3>
+                    <div id="bias-list">
+                        <!-- Dynamic Results -->
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+    <script type="module" src="js/analyzer.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scenario Simulator - LifeOS</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .simulator-grid {
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            gap: 2rem;
+        }
+
+        @media (max-width: 900px) {
+            .simulator-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .control-panel {
+            padding: 1.5rem;
+        }
+
+        .simulation-view {
+            padding: 2rem;
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .var-row {
+            margin-bottom: 1.5rem;
+        }
+
+        .var-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .projection-card {
+            margin-top: auto;
+            padding: 1.5rem;
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px dashed var(--primary);
+        }
+
+        .proj-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .proj-item h4 {
+            font-size: 0.75rem;
+            opacity: 0.6;
+            text-transform: uppercase;
+        }
+
+        .proj-item p {
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar glass-panel">
+            <div class="logo">
+                <i class="ri-pulse-fill"></i>
+                <span>LifeOS</span>
+            </div>
+            <nav class="nav-links">
+                <li class="nav-item"><a href="index.html" class="nav-link"><i class="ri-dashboard-3-line"></i><span
+                            class="nav-text">Dashboard</span></a></li>
+                <li class="nav-item"><a href="decision.html" class="nav-link"><i class="ri-git-branch-line"></i><span
+                            class="nav-text">Decision Builder</span></a></li>
+                <li class="nav-item"><a href="simulator.html" class="nav-link active"><i class="ri-magic-line"></i><span
+                            class="nav-text">Simulator</span></a></li>
+                <li class="nav-item"><a href="analyzer.html" class="nav-link"><i class="ri-cpu-line"></i><span
+                            class="nav-text">Bias Analyzer</span></a></li>
+                <li class="nav-item"><a href="timeline.html" class="nav-link"><i class="ri-history-line"></i><span
+                            class="nav-text">Insight Timeline</span></a></li>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header class="page-header animate-in">
+                <div class="header-info">
+                    <h1>Scenario Simulator</h1>
+                    <p>Stress-test your decisions against variable futures.</p>
+                </div>
+            </header>
+
+            <div class="simulator-grid animate-in" style="animation-delay: 0.1s">
+                <aside class="control-panel glass-panel">
+                    <h3>Variables</h3>
+                    <p style="font-size: 0.8rem; opacity: 0.6; margin-bottom: 1.5rem;">Adjust environmental factors to
+                        see outcome volatility.</p>
+
+                    <div id="variables-list">
+                        <div class="var-row">
+                            <div class="var-header"><span>Market/Salary</span><span class="val">50%</span></div>
+                            <input type="range" class="sim-slider" data-var="salary" min="0" max="100" value="50">
+                        </div>
+                        <div class="var-row">
+                            <div class="var-header"><span>Skill Growth</span><span class="val">50%</span></div>
+                            <input type="range" class="sim-slider" data-var="growth" min="0" max="100" value="50">
+                        </div>
+                        <div class="var-row">
+                            <div class="var-header"><span>Risk Factor</span><span class="val">20%</span></div>
+                            <input type="range" class="sim-slider" data-var="risk" min="0" max="100" value="20">
+                        </div>
+                        <div class="var-row">
+                            <div class="var-header"><span>Effort Level</span><span class="val">60%</span></div>
+                            <input type="range" class="sim-slider" data-var="effort" min="0" max="100" value="60">
+                        </div>
+                    </div>
+
+                    <div class="projection-card glass-panel">
+                        <h3>Predicted Outcome</h3>
+                        <div class="proj-grid">
+                            <div class="proj-item">
+                                <h4>Score</h4>
+                                <p id="proj-score">72</p>
+                            </div>
+                            <div class="proj-item">
+                                <h4>Volatility</h4>
+                                <p id="proj-vol">Low</p>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+
+                <section class="simulation-view glass-panel">
+                    <h3>Outcome Projection Graph</h3>
+                    <div style="flex: 1; margin-top: 1.5rem;">
+                        <canvas id="projection-chart"></canvas>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+    <script type="module" src="js/simulator.js"></script>
+</body>
+
+</html>

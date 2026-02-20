@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LifeOS - Personal Decision Operating System</title>
+    <!-- Remix Icon for simple, clean icons -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar glass-panel">
+            <div class="logo">
+                <i class="ri-pulse-fill"></i>
+                <span>LifeOS</span>
+            </div>
+
+            <nav class="nav-links">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">
+                        <i class="ri-dashboard-3-line"></i>
+                        <span class="nav-text">Dashboard</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="decision.html" class="nav-link">
+                        <i class="ri-git-branch-line"></i>
+                        <span class="nav-text">Decision Builder</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="simulator.html" class="nav-link">
+                        <i class="ri-magic-line"></i>
+                        <span class="nav-text">Simulator</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="analyzer.html" class="nav-link">
+                        <i class="ri-cpu-line"></i>
+                        <span class="nav-text">Bias Analyzer</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="timeline.html" class="nav-link">
+                        <i class="ri-history-line"></i>
+                        <span class="nav-text">Insight Timeline</span>
+                    </a>
+                </li>
+            </nav>
+
+            <div class="sidebar-footer">
+                <button id="theme-toggle" class="nav-link"
+                    style="width: 100%; border: none; background: transparent; cursor: pointer;">
+                    <i class="ri-sun-line"></i>
+                    <span class="nav-text">Toggle Theme</span>
+                </button>
+                <button id="settings-btn" class="nav-link"
+                    style="width: 100%; border: none; background: transparent; cursor: pointer;">
+                    <i class="ri-settings-4-line"></i>
+                    <span class="nav-text">Settings</span>
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Workspace -->
+        <main class="main-content">
+            <header class="page-header animate-in">
+                <div class="header-info">
+                    <h1>Decision Dashboard</h1>
+                    <p>Optimize your life through structured intelligence.</p>
+                </div>
+                <div class="header-actions">
+                    <a href="decision.html" class="btn btn-primary">
+                        <i class="ri-add-line"></i> New Decision
+                    </a>
+                </div>
+            </header>
+
+            <!-- Quick Stats -->
+            <section class="stats-grid animate-in" style="animation-delay: 0.1s">
+                <div class="stat-card glass-panel">
+                    <div class="stat-icon" style="background: rgba(99, 102, 241, 0.1); color: var(--primary);">
+                        <i class="ri-folders-line"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>Total Decisions</h3>
+                        <p id="total-decisions">0</p>
+                    </div>
+                </div>
+                <div class="stat-card glass-panel">
+                    <div class="stat-icon" style="background: rgba(16, 185, 129, 0.1); color: var(--success);">
+                        <i class="ri-heart-pulse-line"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>Avg. Health</h3>
+                        <p id="avg-health">0%</p>
+                    </div>
+                </div>
+                <div class="stat-card glass-panel">
+                    <div class="stat-icon" style="background: rgba(245, 158, 11, 0.1); color: var(--warning);">
+                        <i class="ri-sparkling-fill"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>AI Insights</h3>
+                        <p id="ai-insights">0</p>
+                    </div>
+                </div>
+                <div class="stat-card glass-panel">
+                    <div class="stat-icon" style="background: rgba(139, 92, 246, 0.1); color: var(--accent);">
+                        <i class="ri-scales-line"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>Alignment</h3>
+                        <p id="alignment">High</p>
+                    </div>
+                </div>
+            </section>
+
+            <div class="dashboard-body animate-in" style="animation-delay: 0.2s">
+                <!-- Recent Decisions -->
+                <section class="recent-decisions">
+                    <div class="section-header">
+                        <h2>Recent Active Decisions</h2>
+                        <a href="timeline.html" class="text-link">View All</a>
+                    </div>
+                    <div id="decisions-list" class="decisions-container">
+                        <div class="empty-state glass-panel">
+                            <i class="ri-inbox-line"></i>
+                            <p>No active decisions yet. Start by defining your first goal.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- AI Insights Sidebar -->
+                <aside class="ai-side-panel">
+                    <div class="insight-card glass-panel primary">
+                        <div class="card-glow"></div>
+                        <div class="insight-content">
+                            <h3>AI Intelligence</h3>
+                            <p>Connect your Gemini API key to unlock pattern detection and bias analysis.</p>
+                            <button class="btn btn-outline" id="connect-ai-btn">Connect Key</button>
+                        </div>
+                    </div>
+
+                    <div class="insight-card glass-panel">
+                        <h3>Decision Tip</h3>
+                        <p id="daily-tip">"Sleep on complex decisions. The unconscious mind is better at integrating
+                            multi-criteria information."</p>
+                    </div>
+                </aside>
+            </div>
+        </main>
+    </div>
+
+    <!-- Settings Modal -->
+    <div id="settings-modal" class="modal-overlay">
+        <div class="modal-content glass-panel">
+            <div class="modal-header">
+                <h2>Settings</h2>
+                <button class="close-modal"><i class="ri-close-line"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Gemini API Key</label>
+                    <input type="password" id="api-key-input" placeholder="Enter your key here...">
+                    <small>Your key is stored locally in your browser and never sent to our servers.</small>
+                </div>
+                <button id="save-api-key" class="btn btn-primary">Save Settings</button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="js/app.js"></script>
+    <script type="module" src="js/dashboard.js"></script>
+</body>
+
+</html>
