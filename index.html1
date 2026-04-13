@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Quirky Hampers</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body style="font-family: Arial; text-align:center; padding:40px;">
+
+<h1>Quirky Hampers</h1>
+
+<h2>“Curated Hampers That Feel as Good as They Look”</h2>
+
+<p>
+A sensory gifting experience with artisanal products and unforgettable unboxing.
+</p>
+
+<button style="padding:10px 20px; border:none; background:black; color:white; border-radius:10px;">
+Explore Hampers
+</button>
+
+</body>
+</html>
